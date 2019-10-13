@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
+from .models import dashbord
 
 
 # Create your views here.
@@ -50,10 +51,12 @@ def create(request):
                 else:
                     messages.info(request,"user is None")
                     return render(request,"create.html")   
+        
         else:
             messages.info(request,"password did not matched")
             return render(request,"create.html")
         
+
        
     else:
         return render(request,"create.html")
@@ -64,3 +67,29 @@ def dashbord(request):
 
 def homebtn(request):
     return render(request,"home.html")
+
+def newevent(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        single = request.POST.get("single")
+        team = request.POST.get("team")
+        if team and single:
+            messages.info(request,"you cant give both values")
+            return render(request,"newevent.html")
+        elif single:
+            single = request.POST["single"]
+        else:
+            team = request.POST["team"]
+
+        d = dashbord(name=name,team=team,single=single,user=request)
+        if d is not None:
+            d.save()
+            return redirect("dashbord")
+        else:
+            message.info(request,"user is none")
+            return render(request,"newevent.html")
+    else:
+        #messages.info(request," method request not post ")
+        return render(request,"newevent.html")
+    
+            

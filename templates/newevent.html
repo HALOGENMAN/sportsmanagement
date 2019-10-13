@@ -9,20 +9,21 @@
     <meta name="generator" content="Jekyll v3.8.5">
     <title>Starter Template · Bootstrap</title>
     <link rel="stylesheet" href="{% static 'C:\Users\MALAKAR\Documents\javapro\restapi\dynamicform\src\static\templates.css' %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
  
   </head>
   <body>
         <div style="background-color:rgba(255, 255, 255, 0.87);margin-top:10px;border-radius:5px;border:1px solid black;width:90%;position:relative;left:5%;box-shadow:0px 0px 10px  dimgrey;">
-                <h1 style="text-align:center;color:black;"> DASHBORD </h1>
+                <h1 style="text-align:center;color:black;"> CREATE YOUR EVENT </h1>
             </div> 
             {% if user.is_authenticated %}
             <div style="position: absolute;right:5px;bottom:5px;display:block;border:1px solid black;border-radius:5px;z-index:1;box-shadow:0px 0px 10px  dimgrey;">
               <div style="padding:5px" >
               <div><p>{{user.username}}</p></div>
               <div><button style="background-color: brown;border-radius:5px;border:1px solid  brown"><a style="text-decoration:none;color:black" href="logout">logout</a></button></div> <br>
-              <div><button style="background-color: brown;border-radius:5px;border:1px solid  brown"><a style="text-decoration:none;color:black" href="homebtn">home</a></button></div>
+              <div><button style="background-color: brown;border-radius:5px;border:1px solid  brown"><a style="text-decoration:none;color:black" href="homebtn">home</a></button></div><br>
+              <div><button style="background-color: brown;border-radius:5px;border:1px solid  brown"><a style="text-decoration:none;color:black" href="dashbord">dashbord</a></button></div>
             </div>
             </div>
             {% endif %}
@@ -30,21 +31,35 @@
 <main role="main" class="container">
 
   
-  <form action="." method="GET">
-      <div class="form-row" style="margin-top:30px;">
-        <div class="form-group col-7">
+  <form action="newevent" method="POST">
+      {% csrf_token %}
+    <div class="form-row" style="margin-top:20px;">
+        <div class="form-group col-12">
           <div class="input-group">
-            <p class="form-control py border-right" >name of event</p>
-            <span class="input-group-append">
-              <div class="input-group-text bg-transparent">
-                  <a style="text-decoration: none;" href="#">EDIT</a>
-              </div>
-            </span>
-            <span class="input-group-append">
-                <div class="input-group-text bg-transparent">
-                    <a style="text-decoration: none;" href="#">DELETE</a>
-                 </div>
-            </span>
+            <input class="form-control py border-right" type="search" placeholder="name of event" name ="name" />
+           
+          </div>
+        </div>
+
+      </div>
+            
+            <div class="form-row">
+            <div class="form-group">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="reviewed" name="single">
+                  <label class="form-check-label" for="reviewed">
+                    SINGLE PLAYER
+                  </label>
+                </div>
+              
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="reviewed" name="team">
+                    <label class="form-check-label" for="reviewed">
+                      TEAM OR GROUP
+                    </label>
+                  </div>
+                </div>
+            </div>
           </div>
         </div>
 
@@ -53,13 +68,15 @@
         
             
       </div>
+      <div class="form-row" style="margin-top:20px;">
+        <input  style="background-color:lightblue;border-radius:5px;border:1px solid  brown" type="submit" value="SUBMIT">
+      </div>
+
   </form>
-  <div class="form-check" style="margin-top:20px">
-        <p class="form-check-input">
-        <label class="form-check-label" for="reviewed">
-                <button style="background-color:lightblue;border-radius:5px;border:1px solid  brown"><a style="text-decoration:none;color:black" href="newevent">+ NEW EVENT</a></button></div>
-        </label>
-        </p>
+  <div style="text-align:center; ">
+        {% for mess in messages %}
+          <p style="color:red;">{{mess}}</p> 
+        {% endfor %}
       </div>
   
   <hr/>
