@@ -61,3 +61,6 @@ def create(request):
 def dashbord(request):
 
     return render(request,"dashbord.html")
+
+def homebtn(request):
+    return render(request,"home.html")
