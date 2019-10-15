@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import dashbord
+from .models import dd1
 # Register your models here.
 
-admin.site.register(dashbord)
+admin.site.register(dd1)

@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
-from .models import dashbord
+from .models import dd1
 
 
 # Create your views here.
@@ -81,7 +81,7 @@ def newevent(request):
         else:
             team = request.POST["team"]
 
-        d = dashbord(name=name,team=team,single=single,user=request)
+        d = dd1(name=name,team=team,user=request.user)
         if d is not None:
             d.save()
             return redirect("dashbord")
