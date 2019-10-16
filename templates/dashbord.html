@@ -7,9 +7,9 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Starter Template · Bootstrap</title>
+    <title>HALOGENMAN</title>
     <link rel="stylesheet" href="{% static 'C:\Users\MALAKAR\Documents\javapro\restapi\dynamicform\src\static\templates.css' %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
  
   </head>
@@ -29,15 +29,15 @@
 
 <main role="main" class="container">
 
-  
+  {% for dd in dd %}
   <form action="." method="GET">
       <div class="form-row" style="margin-top:30px;">
         <div class="form-group col-7">
           <div class="input-group">
-            <p class="form-control py border-right" >name of event</p>
+            <p class="form-control py border-right" >{{dd.name}}t</p>
             <span class="input-group-append">
               <div class="input-group-text bg-transparent">
-                  <a style="text-decoration: none;" href="#">EDIT</a>
+                  <a style="text-decoration: none;" href="player/{{dd.id}}">SHOW</a>
               </div>
             </span>
             <span class="input-group-append">
@@ -47,13 +47,9 @@
             </span>
           </div>
         </div>
-
-      
-      
-        
-            
-      </div>
+    </div>
   </form>
+  {% endfor %}
   <div class="form-check" style="margin-top:20px">
         <p class="form-check-input">
         <label class="form-check-label" for="reviewed">

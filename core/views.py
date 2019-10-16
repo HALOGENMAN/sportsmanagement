@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
-from .models import dd1
+from .models import dd1,single1
 
 
 # Create your views here.
@@ -62,8 +62,8 @@ def create(request):
         return render(request,"create.html")
     
 def dashbord(request):
-
-    return render(request,"dashbord.html")
+    dd = dd1.objects.filter(user=request.user)
+    return render(request,"dashbord.html",{"dd":dd})
 
 def homebtn(request):
     return render(request,"home.html")
@@ -71,15 +71,7 @@ def homebtn(request):
 def newevent(request):
     if request.method == "POST":
         name = request.POST.get("name")
-        single = request.POST.get("single")
         team = request.POST.get("team")
-        if team and single:
-            messages.info(request,"you cant give both values")
-            return render(request,"newevent.html")
-        elif single:
-            single = request.POST["single"]
-        else:
-            team = request.POST["team"]
 
         d = dd1(name=name,team=team,user=request.user)
         if d is not None:
@@ -92,4 +84,16 @@ def newevent(request):
         #messages.info(request," method request not post ")
         return render(request,"newevent.html")
     
-            
+def player(request,id):
+   
+    if request.method == "POST":
+        name = request.POST["name"]
+        s = single1(name=name,team1=id)
+        s.save()
+        
+        return render(request,"player.html",context)
+    else:
+        return render(request,"player.html",context)
+   
+
+   
