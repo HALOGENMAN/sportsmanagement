@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
 from .models import dd1,single1
@@ -84,16 +84,19 @@ def newevent(request):
         #messages.info(request," method request not post ")
         return render(request,"newevent.html")
     
-def player(request,id):
-   
+def player(request,id=None):
+    instance = single1.objects.filter(team1=id)
+    context={
+        "aa":instance
+    }
+    
     if request.method == "POST":
-        name = request.POST["name"]
-        s = single1(name=name,team1=id)
+        name=request.POST["name"]
+        s = single1(name=name,team1=dd1.objects.get(id=id))
         s.save()
-        
         return render(request,"player.html",context)
-    else:
-        return render(request,"player.html",context)
-   
+    return render(request,"player.html",context)
 
-   
+def back(request):
+    
+    return redirect("/")

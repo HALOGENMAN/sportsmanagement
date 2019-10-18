@@ -10,6 +10,8 @@ urlpatterns = [
     path("logout",views.logout,name="logout"),
     path("homebtn",views.homebtn,name="homebth"),
     path("newevent",views.newevent,name="newevent"),
-    path("player/<int:id>",views.player,name="player"),
+    path("<int:id>/",views.player,name="player"),
+    path("back",views.back,name="player"),
+    path("<int:id>/player",views.player,name="player"),
     
 ]

@@ -14,16 +14,9 @@ class dashbord(models.Model):
 class dd1(models.Model):
     name = models.CharField(max_length=50)
     user = models.ForeignKey(User , on_delete=models.CASCADE)
-    team = models.CharField(max_length=20,default="")
+    team = models.CharField(max_length=20,default=" ",null=True)
     
 class single1(models.Model):
     name = models.CharField(max_length=50)
     team1 = models.ForeignKey(dd1,on_delete=models.CASCADE)
 
-class multiplayer1(models.Model):
-    name = models.CharField(max_length=50)
-    team1 = models.ForeignKey(dd1,on_delete=models.CASCADE)
-
-class single2(models.Model):
-    name = models.CharField(max_length=50)
-    team2 = models.ForeignKey(multiplayer1,on_delete=models.CASCADE)

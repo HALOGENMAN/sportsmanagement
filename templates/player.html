@@ -15,22 +15,27 @@
   </head>
   <body>
         <div style="background-color:rgba(255, 255, 255, 0.87);margin-top:10px;border-radius:5px;border:1px solid black;width:90%;position:relative;left:5%;box-shadow:0px 0px 10px  dimgrey;">
-                <h1 style="text-align:center;color:black;"> PLAYER BORD </h1>
+                <h1 style="text-align:center;color:black;"> PLAYER NAMEs </h1>
             </div> 
-            {% if user.is_authenticated %}
-            <div style="position: absolute;right:5px;bottom:5px;display:block;border:1px solid black;border-radius:5px;z-index:1;box-shadow:0px 0px 10px  dimgrey;">
-              <div style="padding:5px" >
-              <div><p>{{user.username}}</p></div>
-              <div><button style="background-color: brown;border-radius:5px;border:1px solid  brown"><a style="text-decoration:none;color:black" href="logout">logout</a></button></div> <br>
-              <div><button style="background-color: brown;border-radius:5px;border:1px solid  brown"><a style="text-decoration:none;color:black" href="homebtn">home</a></button></div><br>
-              <div><button style="background-color: brown;border-radius:5px;border:1px solid  brown"><a style="text-decoration:none;color:black" href="//dashbord">dashbord</a></button></div>
-            </div>
-            </div>
-            {% endif %}
+            
 
 <main role="main" class="container">
+{% for aa in aa %}
+  <form action="player" method="POST">
+    
+  <div class="form-row" style="margin-top:20px;">
+      <div class="form-group col-12">
+        <div class="input-group">
+          <p class="form-control py border-right" type="search" placeholder="enter the name of the player" name ="name" >{{aa.name}}
+         
+        </div>
+      </div>
 
+    </div>
   
+
+</form>
+  {% endfor %}
   <form action="player" method="POST">
       {% csrf_token %}
     <div class="form-row" style="margin-top:20px;">
